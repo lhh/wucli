@@ -6,12 +6,15 @@ import os
 
 
 def weather_str(weather_info):
-    obs = weather_info['current_observation']
-    ret_str = '{0}, {1}F ({2}C), Wind {3} @ {4}~{5}mph, Humidity {6} (Weather Underground)'.format(
-                  obs['weather'],
-                  obs['temp_f'], obs['temp_c'],
-                  obs['wind_dir'], obs['wind_mph'], obs['wind_gust_mph'],
-                  obs['relative_humidity'])
+    try:
+        obs = weather_info['current_observation']
+        ret_str = '{0}, {1}F ({2}C), Wind {3} @ {4}~{5}mph, Humidity {6} (Weather Underground)'.format(
+                      obs['weather'],
+                      obs['temp_f'], obs['temp_c'],
+                      obs['wind_dir'], obs['wind_mph'], obs['wind_gust_mph'],
+                      obs['relative_humidity'])
+    except KeyError:
+        ret_str = 'No weather data available; try again later.'
     return ret_str
 
 
